@@ -22,12 +22,12 @@ contract AIList {
         uint[] memory result = new uint[](ownerTaskCounter[_owner]);
         uint counter = 0;
         for (uint i = 0; i < tasks.length; i++) {
-        if (taskToOwner[i] == _owner) {
-        result[counter] = i;
-        counter++;
+            if (taskToOwner[i] == _owner) {
+            result[counter] = i;
+            counter++;
+            }
         }
-    }
-    return result;
+        return result;
     }
     function completeTask(uint _taskId) public {
         require(msg.sender == taskToOwner[_taskId],"Check ID");
