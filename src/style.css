@@ -3,4 +3,7 @@
     color: gray;
     font-style: italic;
   }
+  li:hover{
+    cursor: pointer;
+  }
   
