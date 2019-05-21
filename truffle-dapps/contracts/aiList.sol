@@ -5,18 +5,17 @@ contract AIList {
         string name;
         bool completed;
     }
-    event newTask(uint id, string name, bool completed);
+    event newTask(uint id, string name);
     Task[] public tasks;
     mapping (uint => address) taskToOwner;
     mapping (address => uint) ownerTaskCounter;
-    function saveTask(string memory _name, bool _completed) public {
-        uint id = tasks.push(Task(_name, _completed))-1;
+    function saveTask(string memory _name) public {
+        uint id = tasks.push(Task(_name, false))-1;
         // ...taskToOwnerへの処理。
         // ...ownerTaskCounterへの処理。
         taskToOwner[id] = msg.sender;
         ownerTaskCounter[msg.sender]++;
-        tasks.push(Task(_name, _completed));
-        emit newTask(id, _name, _completed);
+        emit newTask(id, _name);
     }
     function getTaskId(address _owner) public view returns(uint[] memory){
         uint[] memory result = new uint[](ownerTaskCounter[_owner]);
